@@ -1,6 +1,35 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TimSort {
+	private static final String COMMA_DELIMITER = ",";
+	public static ArrayList<Integer> readFile(File file) {
+		List<Integer>records = new ArrayList<>();
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+		    String line;
+		    while ((line = br.readLine()) != null) {
+		        String[] values = line.split(COMMA_DELIMITER);
+		     //  records.add(Arrays.asList(values));
+		       for(String s: values) {
+		    	   int z = Integer.parseInt(s);
+		        records.add(z);
+		        
+		        }
+		    }
+		 
+		}
+		
+		catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return (ArrayList<Integer>) records;
+	
+		}
 	public static int RUN = 32;
 	public static void insertionSort(int arr[], int left, int right) 
 	{ 
@@ -99,10 +128,13 @@ public class TimSort {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		 int arr[] = {10, 22, 9, 23, 19}; 
-		    int n = arr.length; 
-		   timSort(arr, n); 
-		   System.out.println(Arrays.toString(arr));
+		File file = new File("testfile.txt");
+		ArrayList<Integer> num = readFile(file);
+		int[]numArray = num.stream().filter(i -> i != null).mapToInt(i -> i).toArray();
+		// int arr[] = {10, 22, 9, 23, 19}; 
+		    int n = numArray.length; 
+		   timSort(numArray, n); 
+		   System.out.println(Arrays.toString(numArray));
 
 	}
 

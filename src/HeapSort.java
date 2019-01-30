@@ -1,8 +1,35 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class HeapSort {
+	private static final String COMMA_DELIMITER = ",";
+	public static ArrayList<Integer> readFile(File file) {
+		List<Integer>records = new ArrayList<>();
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+		    String line;
+		    while ((line = br.readLine()) != null) {
+		        String[] values = line.split(COMMA_DELIMITER);
+		     //  records.add(Arrays.asList(values));
+		       for(String s: values) {
+		    	   int z = Integer.parseInt(s);
+		        records.add(z);
+		        
+		        }
+		    }
+		 
+		}
+		
+		catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return (ArrayList<Integer>) records;
 	
-	
+		}
 	
 	//method to build  max-heap 
      public static void buildheap(int []numberArray) {
@@ -59,10 +86,13 @@ public class HeapSort {
 	
 
 	public static void main(String[] args) {
-		HeapSort tester = new HeapSort();
-        int test[] = {1,5,7,3,9,2};
-        tester.heapSort(test);
-        System.out.println(Arrays.toString(test));
+		//HeapSort tester = new HeapSort();
+		File file = new File("testfile.txt");
+		ArrayList<Integer> num = readFile(file);
+		int[]numArray = num.stream().filter(i -> i != null).mapToInt(i -> i).toArray();
+        //int test[] = {1,5,7,3,9,2};
+        heapSort(numArray);
+        System.out.println(Arrays.toString(numArray));
 
 	}
 

@@ -1,6 +1,36 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 public class MergeSort {
+ private static final String COMMA_DELIMITER = ",";
 
+//reads the given file and puts in the array
+	public static ArrayList<Integer> readFile(File file) {
+		List<Integer>records = new ArrayList<>();
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+		    String line;
+		    while ((line = br.readLine()) != null) {
+		        String[] values = line.split(COMMA_DELIMITER);
+		     //  records.add(Arrays.asList(values));
+		       for(String s: values) {
+		    	   int z = Integer.parseInt(s);
+		        records.add(z);
+		        
+		        }
+		    }
+		 
+		}
+		
+		catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return (ArrayList<Integer>) records;
+	
+		}
 	//mergesort sorting method
 	public void merge(int input[], int[] leftArray, int[] rightArray, int left, int right) {
 		
@@ -68,11 +98,16 @@ public class MergeSort {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		File file = new File("testfile.txt");
+		ArrayList<Integer> num = readFile(file);
+		int[]numArray = num.stream().filter(i -> i != null).mapToInt(i -> i).toArray();
+		//String 
+		System.out.println(Arrays.toString(numArray));
 		MergeSort m = new MergeSort();
-		int[] numbers = {1,3,2,4};
+		//int[] numbers = {1,3,2,4};
 		//call the method that will sort the numbers
-		m.sort(numbers);
-		System.out.println(numbers[2]);
+		m.sort(numArray);
+	    System.out.println(Arrays.toString(numArray));
 	}
 
 }
