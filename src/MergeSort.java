@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +34,24 @@ public class MergeSort {
 		return (ArrayList<Integer>) records;
 	
 		}
+	public static void writeFile(int []input) throws IOException {
+				    String str = "";
+				    String file = "testfileSorted4";
+					BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+					//for(String)
+					String strArray[] = Arrays.stream(input)
+							.mapToObj(String::valueOf)
+							.toArray(String[]::new);
+					for(String s: strArray) {
+						
+				    writer.write(s);
+				    
+				    writer.write(",");//need to fix for the last element 
+					} 
+				     
+				    writer.close();
+				}
+	
 	//mergesort sorting method
 	public void merge(int input[], int[] leftArray, int[] rightArray, int left, int right) {
 		
@@ -96,7 +117,7 @@ public class MergeSort {
 			
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		File file = new File("testfile.txt");
 		ArrayList<Integer> num = readFile(file);
@@ -108,6 +129,12 @@ public class MergeSort {
 		//call the method that will sort the numbers
 		m.sort(numArray);
 	    System.out.println(Arrays.toString(numArray));
+	    writeFile(numArray);
+	    /*int[] sortednumArray = new int[numArray.length];
+		sortednumArray = m.sort(numArray);
+		System.out.println("this is sorted!");
+	    System.out.println(Arrays.toString(sortednumArray));*/
+	    
 	}
 
 }
