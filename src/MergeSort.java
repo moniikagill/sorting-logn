@@ -18,7 +18,7 @@ public class MergeSort {
 		       for(String s: values) {
 		    	   int z = Integer.parseInt(s);
 		        records.add(z);
-		        
+		       // System.out.println(records);
 		        }
 		    }
 		 

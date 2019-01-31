@@ -37,7 +37,7 @@ public class TimSort {
 	    { 
 	        int temp = arr[i]; 
 	        int j = i - 1; 
-	        while (arr[j] > temp && j >= left) 
+	        while (arr[j] > temp && j > left) 
 	        { 
 	            arr[j+1] = arr[j]; 
 	            j--; 
@@ -133,6 +133,7 @@ public class TimSort {
 		int[]numArray = num.stream().filter(i -> i != null).mapToInt(i -> i).toArray();
 		// int arr[] = {10, 22, 9, 23, 19}; 
 		    int n = numArray.length; 
+		   System.out.println(n);
 		   timSort(numArray, n); 
 		   System.out.println(Arrays.toString(numArray));
 
