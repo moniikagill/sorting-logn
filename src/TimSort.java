@@ -36,11 +36,12 @@ public class TimSort {
 	    for (int i = left + 1; i <= right; i++) 
 	    { 
 	        int temp = arr[i]; 
+	        System.out.println(i+"=" +temp);
 	        int j = i - 1; 
-	        while (arr[j] > temp && j > left) 
+	        while (j >= left && arr[j] > temp ) 
 	        { 
 	            arr[j+1] = arr[j]; 
-	            j--; 
+	            j=j-1; 
 	        } 
 	        arr[j+1] = temp; 
 	    } 
@@ -97,9 +98,10 @@ public class TimSort {
 	public static void timSort(int arr[], int n) 
 	{ 
 	    // Sort individual subarrays of size RUN 
-	    for (int i = 0; i < n; i+=RUN) 
+	    for (int i = 0; i < n; i+=RUN) {
+	    	System.out.println("this is small "+Math.min((i+31), (n-1)));
 	        insertionSort(arr, i, Math.min((i+31), (n-1))); 
-	  
+	    }
 	    // start merging from size RUN (or 32). It will merge 
 	    // to form size 64, then 128, 256 and so on .... 
 	    for (int size = RUN; size < n; size = 2*size) 
@@ -133,7 +135,7 @@ public class TimSort {
 		int[]numArray = num.stream().filter(i -> i != null).mapToInt(i -> i).toArray();
 		// int arr[] = {10, 22, 9, 23, 19}; 
 		    int n = numArray.length; 
-		   System.out.println(n);
+		   System.out.println("length of array = "+ n);
 		   timSort(numArray, n); 
 		   System.out.println(Arrays.toString(numArray));
 
