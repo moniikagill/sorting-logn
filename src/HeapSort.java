@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +33,26 @@ public class HeapSort {
 		return (ArrayList<Integer>) records;
 	
 		}
+	public static void writeFile(int []input) throws IOException {
+		   
+	    String file = "heapSortSorted";
+		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+		//for(String)
+		String strArray[] = Arrays.stream(input)
+				.mapToObj(String::valueOf)
+				.toArray(String[]::new);
+		for(int i = 0;i<strArray.length;i++) {
+			writer.write(strArray[i]);
+			if(strArray[i]!=strArray[strArray.length-1]) {
+				writer.write(",");	
+			}
+	
+		}
+		
+	     
+	    writer.close();
+	}
+
 	
 	//method to build  max-heap 
      public static void buildheap(int []numberArray) {
@@ -93,6 +116,12 @@ public class HeapSort {
         //int test[] = {1,5,7,3,9,2};
         heapSort(numArray);
         System.out.println(Arrays.toString(numArray));
+        try {
+			writeFile(numArray);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

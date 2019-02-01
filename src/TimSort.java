@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +35,27 @@ public class TimSort {
 		return (ArrayList<Integer>) records;
 
 	}
+	
+	public static void writeFile(int []input) throws IOException {
+		   
+	    String file = "timSortSorted";
+		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+		//for(String)
+		String strArray[] = Arrays.stream(input)
+				.mapToObj(String::valueOf)
+				.toArray(String[]::new);
+		for(int i = 0;i<strArray.length;i++) {
+			writer.write(strArray[i]);
+			if(strArray[i]!=strArray[strArray.length-1]) {
+				writer.write(",");	
+			}
+	
+		}
+		
+	     
+	    writer.close();
+	}
+
 
 	
 
@@ -132,6 +156,12 @@ public class TimSort {
 		System.out.println("length of array = " + n);
 		timSort(numArray, n);
 		System.out.println(Arrays.toString(numArray));
+		 try {
+				writeFile(numArray);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 	}
 

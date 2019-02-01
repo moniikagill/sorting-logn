@@ -35,19 +35,21 @@ public class MergeSort {
 	
 		}
 	public static void writeFile(int []input) throws IOException {
-				    String str = "";
-				    String file = "testfileSorted4";
+				   
+				    String file = "mergeSortSorted";
 					BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 					//for(String)
 					String strArray[] = Arrays.stream(input)
 							.mapToObj(String::valueOf)
 							.toArray(String[]::new);
-					for(String s: strArray) {
-						
-				    writer.write(s);
-				    
-				    writer.write(",");//need to fix for the last element 
-					} 
+					for(int i = 0;i<strArray.length;i++) {
+						writer.write(strArray[i]);
+						if(strArray[i]!=strArray[strArray.length-1]) {
+							writer.write(",");	
+						}
+				
+					}
+					
 				     
 				    writer.close();
 				}
