@@ -62,7 +62,7 @@ public class TimSort {
 	public static void insertionSort(int arr[], int left, int right) {
 		for (int i = left + 1; i <= right; i++) {
 			int temp = arr[i];
-			System.out.println(i + "=" + temp);
+			//System.out.println(i + "=" + temp);
 			int j = i - 1;
 			while (j >= left && arr[j] > temp) {
 				arr[j + 1] = arr[j];
@@ -76,6 +76,9 @@ public class TimSort {
 		// original array is broken in two parts
 		// left and right array
 		int len1 = m - l + 1, len2 = r - m;
+		System.out.println(r);
+		System.out.println(m);
+		System.out.println(len2);
 		int left[] = new int[len1];
 		int right[] = new int[len2];
 		for (int i = 0; i < len1; i++)
@@ -118,11 +121,12 @@ public class TimSort {
 	public static void timSort(int arr[], int n) {
 		// Sort individual subarrays of size RUN
 		for (int i = 0; i < n; i += RUN) {
-			System.out.println("this is small " + Math.min((i + 31), (n - 1)));
+			//System.out.println("this is small " + Math.min((i + 31), (n - 1)));
 			insertionSort(arr, i, Math.min((i + 31), (n - 1)));
 		}
 		// start merging from size RUN (or 32). It will merge
 		// to form size 64, then 128, 256 and so on ....
+		//need to test from here-----------------------------------------
 		for (int size = RUN; size < n; size = 2 * size) {
 			// pick starting point of left sub array. we are going to merge
 			// arr[left..left+size-1]
@@ -133,9 +137,14 @@ public class TimSort {
 				// mid+1 is starting point of right sub array
 				int mid = left + size - 1;
 				int right = Math.min((left + 2 * size - 1), (n - 1));
-
+//-----------------------------------to here to see if there is a bug
 				// merge sub array arr[left.....mid] &
 				// arr[mid+1....right]
+				System.out.println("test before merge"+Arrays.toString(arr));
+				System.out.println("length o my array"+arr.length);
+				System.out.println("left"+left);
+				System.out.println("mid"+mid);
+				System.out.println(right+"this is the last one right value");
 				merge(arr, left, mid, right);
 			}
 		}
@@ -148,13 +157,17 @@ public class TimSort {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		File file = new File("testfile.txt");
+		File file = new File("testallsortsUnsorted.txt");
 		ArrayList<Integer> num = readFile(file);
 		int[] numArray = num.stream().filter(i -> i != null).mapToInt(i -> i).toArray();
 		// int arr[] = {10, 22, 9, 23, 19};
 		int n = numArray.length;
-		System.out.println("length of array = " + n);
+		
+		long startTime = System.currentTimeMillis();
 		timSort(numArray, n);
+		long endTime = System.currentTimeMillis();
+		long duration = (endTime - startTime); 
+		System.out.println("time taken to sort:"+duration);
 		System.out.println(Arrays.toString(numArray));
 		 try {
 				writeFile(numArray);

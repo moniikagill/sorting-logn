@@ -110,11 +110,15 @@ public class HeapSort {
 
 	public static void main(String[] args) {
 		//HeapSort tester = new HeapSort();
-		File file = new File("testfile.txt");
+		File file = new File("testallsortsUnsorted.txt");
 		ArrayList<Integer> num = readFile(file);
 		int[] numArray = num.stream().filter(i -> i != null).mapToInt(i -> i).toArray();
         //int test[] = {1,5,7,3,9,2};
+		long startTime = System.currentTimeMillis();
         heapSort(numArray);
+        long endTime = System.currentTimeMillis();
+		long duration = (endTime - startTime); 
+		System.out.println("time taken to sort:"+duration);
         System.out.println(Arrays.toString(numArray));
         try {
 			writeFile(numArray);

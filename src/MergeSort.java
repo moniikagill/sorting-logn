@@ -121,7 +121,7 @@ public class MergeSort {
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		File file = new File("testfile.txt");
+		File file = new File("testallsortsUnsorted.txt");
 		ArrayList<Integer> num = readFile(file);
 		int[]numArray = num.stream().filter(i -> i != null).mapToInt(i -> i).toArray();
 		//String 
@@ -129,7 +129,11 @@ public class MergeSort {
 		MergeSort m = new MergeSort();
 		//int[] numbers = {1,3,2,4};
 		//call the method that will sort the numbers
+		long startTime = System.currentTimeMillis();
 		m.sort(numArray);
+		long endTime = System.currentTimeMillis();
+		long duration = (endTime - startTime); 
+		System.out.println("time taken to sort:"+duration);
 	    System.out.println(Arrays.toString(numArray));
 	    writeFile(numArray);
 	    /*int[] sortednumArray = new int[numArray.length];
