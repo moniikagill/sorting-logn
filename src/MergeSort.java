@@ -125,7 +125,7 @@ public class MergeSort {
 		ArrayList<Integer> num = readFile(file);
 		int[]numArray = num.stream().filter(i -> i != null).mapToInt(i -> i).toArray();
 		//String 
-		System.out.println(Arrays.toString(numArray));
+		//System.out.println(Arrays.toString(numArray));
 		MergeSort m = new MergeSort();
 		//int[] numbers = {1,3,2,4};
 		//call the method that will sort the numbers
@@ -136,10 +136,7 @@ public class MergeSort {
 		System.out.println("time taken to sort:"+duration);
 	    System.out.println(Arrays.toString(numArray));
 	    writeFile(numArray);
-	    /*int[] sortednumArray = new int[numArray.length];
-		sortednumArray = m.sort(numArray);
-		System.out.println("this is sorted!");
-	    System.out.println(Arrays.toString(sortednumArray));*/
+	    
 	    
 	}
 

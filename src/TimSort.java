@@ -62,7 +62,7 @@ public class TimSort {
 	public static void insertionSort(int arr[], int left, int right) {
 		for (int i = left + 1; i <= right; i++) {
 			int temp = arr[i];
-			//System.out.println(i + "=" + temp);
+			
 			int j = i - 1;
 			while (j >= left && arr[j] > temp) {
 				arr[j + 1] = arr[j];
@@ -76,9 +76,7 @@ public class TimSort {
 		// original array is broken in two parts
 		// left and right array
 		int len1 = m - l + 1, len2 = r - m;
-		System.out.println(r);
-		System.out.println(m);
-		System.out.println(len2);
+		
 		int left[] = new int[len1];
 		int right[] = new int[len2];
 		for (int i = 0; i < len1; i++)
@@ -120,10 +118,13 @@ public class TimSort {
 
 	public static void timSort(int arr[], int n) {
 		// Sort individual subarrays of size RUN
+		
 		for (int i = 0; i < n; i += RUN) {
-			//System.out.println("this is small " + Math.min((i + 31), (n - 1)));
+			
 			insertionSort(arr, i, Math.min((i + 31), (n - 1)));
+			
 		}
+		
 		// start merging from size RUN (or 32). It will merge
 		// to form size 64, then 128, 256 and so on ....
 		//need to test from here-----------------------------------------
@@ -132,19 +133,16 @@ public class TimSort {
 			// arr[left..left+size-1]
 			// and arr[left+size, left+2*size-1]
 			// After every merge, we increase left by 2*size
+			
 			for (int left = 0; left < n; left += 2 * size) {
 				// find ending point of left sub array
 				// mid+1 is starting point of right sub array
-				int mid = left + size - 1;
+			
+				
+				
 				int right = Math.min((left + 2 * size - 1), (n - 1));
-//-----------------------------------to here to see if there is a bug
-				// merge sub array arr[left.....mid] &
-				// arr[mid+1....right]
-				System.out.println("test before merge"+Arrays.toString(arr));
-				System.out.println("length o my array"+arr.length);
-				System.out.println("left"+left);
-				System.out.println("mid"+mid);
-				System.out.println(right+"this is the last one right value");
+				int mid = left+(right-left)/2;
+				
 				merge(arr, left, mid, right);
 			}
 		}
