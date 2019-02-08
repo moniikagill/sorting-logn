@@ -165,8 +165,8 @@ public class TimSort {
 		timSort(numArray, n);
 		long endTime = System.currentTimeMillis();
 		long duration = (endTime - startTime); 
-		System.out.println("time taken to sort:"+duration);
-		System.out.println(Arrays.toString(numArray));
+		System.out.println("time taken to sort using timsort:"+duration);
+		System.out.println("Tim sort sorting: "+ Arrays.toString(numArray));
 		 try {
 				writeFile(numArray);
 			} catch (IOException e) {

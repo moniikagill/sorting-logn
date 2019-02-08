@@ -133,8 +133,8 @@ public class MergeSort {
 		m.sort(numArray);
 		long endTime = System.currentTimeMillis();
 		long duration = (endTime - startTime); 
-		System.out.println("time taken to sort:"+duration);
-	    System.out.println(Arrays.toString(numArray));
+		System.out.println("time taken to sort using mergesort:"+duration);
+	    System.out.println("MergeSort sorting: "+ Arrays.toString(numArray));
 	    writeFile(numArray);
 	    
 	    
